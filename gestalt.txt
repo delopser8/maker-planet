@@ -1,0 +1,42 @@
+index.html:
+    Proximidad: Se ve en la disposición de los bloques de texto, logos y testimonios.
+
+    Semejanza: En los iconos, estilo de fuente, y logos de marcas.
+
+    Punto focal: Principalmente usado en la sección hero.
+
+    Figura - fondo: Hay varios elementos destacados frente a un fondo claro.
+
+
+contactanos.html:
+    Proximidad: Campos del formulario agrupados.
+
+    Continuidad: Disposición vertical de los campos.
+
+
+politicas-privacidad.html:
+    Proximidad: Información relacionada agrupada.
+
+
+productos-x.html:
+    Semejanza: Diseño muy parecido de los productos.
+
+    Figura - fondo: Productos destacados sobre un fondo claro.
+
+
+producto-detalles-x.html:
+    Figura - fondo: Reseña del producto y categorías de productos claramente diferenciadas.
+
+    Continuidad: La disposición de los elementos guía al usuario de una sección a otra sin interrupciones.
+
+
+carrito.html:
+    Figura - fondo: Cada bloque de elementos está claramente diferenciados sobre un fondo claro.
+
+    Proximidad: Los productos en el carrito y el total del pedido están agrupados cerca, lo que facilita el uso y visualización de la página.
+
+pagos.html:
+    Figura - fondo: Los elementos del formulario de pago y el resumen del pedido están claramente diferenciados sobre un fondo claro.
+
+    Proximidad: Información de envío, métodos de pago y resumen del pedido agrupados juntos para facilitar la navegación.
+
