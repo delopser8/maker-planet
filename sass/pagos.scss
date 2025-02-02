@@ -1,0 +1,379 @@
+@import "mixins.scss";
+
+// Variables
+$color-principal: #2b2b2b;
+$color-secundario: #2b2b2b;
+$color-exito: #000000;
+$color-fondo: #f8f8f8;
+$sombra: 1px 1px 8px 1px rgba(173, 173, 173, 0.651);
+$color-bordes: #ddd;
+$bloque-fondo: #fff;
+$bgcolor: none;
+
+html{
+    scroll-behavior: smooth;
+}
+
+body{
+    @include reset-body();
+}
+
+/*-- HEADER --*/
+#header{
+    @include header-mix();
+}
+
+/*-- FUNCIONALIDADES NAV --*/
+@include nav-funct-mix();
+
+/*-- FOOTER --*/
+#footer{
+    @include footer-mix();
+}
+ 
+
+// -------------------------------
+/*-- MAIN --*/
+#pagos {
+    width: 82vw;
+    margin: 4em auto;
+    font-family: 'Arial', sans-serif;
+    color: #333;
+    margin-top: 7em;
+
+    .contenedor-columnas {
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr;
+        gap: 2em;
+
+        // Columna Izquierda
+        .columna-izquierda {
+            .proceso-pago {
+                background: $bgcolor;
+                padding: 30px;
+                box-shadow: $sombra;
+
+                h2 {
+                    font-size: 20px;
+                    color: $color-principal;
+                    margin-bottom: 25px;
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+
+                    .numero-paso {
+                        background: $color-secundario;
+                        color: white;
+                        width: 30px;
+                        height: 30px;
+                        border-radius: 50%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        font-size: 16px;
+                    }
+                }
+
+                details {
+                    margin-bottom: 25px;
+                    border: 1px solid $color-bordes;
+                    padding: 15px;
+
+                    &[open] {
+                        summary {
+                            margin-bottom: 15px;
+                        }
+                    }
+
+                    summary {
+                        font-weight: 600;
+                        cursor: pointer;
+                        list-style: none;
+                        padding: 5px;
+
+                        &::after {
+                            content: '+';
+                            float: right;
+                            transition: transform 0.3s;
+                        }
+                    }
+
+                    &[open] summary::after {
+                        content: '-';
+                    }
+
+                    .shipping-methods {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 12px;
+
+                        .method-option {
+                            display: flex;
+                            align-items: center;
+                            gap: 10px;
+                            padding: 12px;
+                            border: 1px solid $color-bordes;
+                            transition: all 0.2s;
+
+                            &:hover {
+                                border-color: $color-secundario;
+                            }
+
+                            input[type="radio"] {
+                                accent-color: $color-secundario;
+                            }
+                        }
+                    }
+
+                    .shipping-details {
+                        .form-grid {
+                            display: grid;
+                            grid-template-columns: repeat(2, 1fr);
+                            gap: 15px;
+                            
+                            .form-group {
+                                input, select {
+                                    width: 90%;
+                                    padding: 12px;
+                                    border: 1px solid $color-bordes;
+                                    font-size: 14px;
+                                    transition: border-color 0.3s;
+                                    
+                                    &:focus {
+                                        outline: none;
+                                        border-color: $color-secundario;
+                                        box-shadow: 0 0 0 2px rgba($color-secundario, 0.1);
+                                    }
+                                }
+                                
+                                select {
+                                    background: $bgcolor;
+                                    appearance: none;
+                                }
+                            }
+                            
+                            .form-group.full-width {
+                                grid-column: 1 / -1;
+                                width: 105.5%;
+                            }
+                        }
+                    }
+                }
+
+                .payment-methods {
+                    .method-selector {
+                        display: flex;
+                        gap: 15px;
+                        margin-bottom: 20px;
+
+                        .method {
+                            flex: 1;
+                            padding: 15px;
+                            border: 2px solid $color-bordes;
+                            cursor: pointer;
+                            transition: all 0.2s;
+
+                            &.active {
+                                border-color: $color-secundario;
+                                background: rgba($color-secundario, 0.05);
+                            }
+
+                            input[type="radio"] {
+                                accent-color: $color-secundario;
+                                margin-right: 10px;
+                            }
+                        }
+                    }
+
+                    .card-details {
+                        .form-row {
+                            display: flex;
+                            gap: 15px;
+                            margin-bottom: 15px;
+
+                            input {
+                                flex: 1;
+                                padding: 12px;
+                                border: 1px solid $color-bordes;
+                                font-size: 14px;
+
+                                &:focus {
+                                    outline: none;
+                                    border-color: $color-secundario;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                .terms-section {
+                    margin: 30px 0 20px;
+                    padding: 15px 0;
+                    border-top: 1px solid $color-bordes;
+
+                    .terms-check {
+                        display: flex;
+                        gap: 10px;
+                        font-size: 14px;
+
+                        input[type="checkbox"] {
+                            accent-color: $color-secundario;
+                        }
+                    }
+                }
+
+                .btn-pago {
+                    width: 100%;
+                    padding: 16px;
+                    background: $color-exito;
+                    color: white;
+                    border: none;
+                    border-radius: 4px;
+                    font-weight: 600;
+                    font-size: 16px;
+                    display: flex;
+                    justify-content: space-between;
+                    transition: background 0.3s;
+                    cursor: pointer;
+
+                    &:hover {
+                        background: darken($color-exito, 5%);
+                    }
+
+                    .total-amount {
+                        font-weight: 700;
+                    }
+                }
+            }
+        }
+
+        // Columna Derecha
+        .columna-derecha {
+            position: sticky;
+            top: 7em;
+            height: fit-content;
+
+            .resumen-pedido {
+                background: $bgcolor;
+                box-shadow: $sombra;
+                padding: 25px;
+
+                h2 {
+                    font-size: 18px;
+                    color: $color-principal;
+                    margin-bottom: 20px;
+                    padding-bottom: 10px;
+                    border-bottom: 1px solid $color-bordes;
+                }
+
+                .resumen {
+                    margin-bottom: 25px;
+
+                    .linea-resumen {
+                        display: flex;
+                        justify-content: space-between;
+                        margin: 12px 0;
+                        font-size: 15px;
+
+                        &.total-final {
+                            font-weight: 700;
+                            font-size: 17px;
+                            margin: 20px 0;
+                            padding-top: 15px;
+                            border-top: 1px solid $color-bordes;
+                        }
+                    }
+
+                    .iva-incluido {
+                        text-align: right;
+                        font-size: 13px;
+                        color: #666;
+                        margin-top: -10px;
+                    }
+                }
+
+                .detalles-pedido {
+                    border-top: 1px solid $color-bordes;
+                    padding-top: 25px;
+
+                    .producto-resumen {
+                        margin: 15px 0;
+
+                        .info-producto {
+                            h3 {
+                                font-size: 15px;
+                                margin: 0 0 5px 0;
+                                font-weight: 500;
+                            }
+
+                            .detalle-precio {
+                                display: flex;
+                                justify-content: space-between;
+                                align-items: center;
+
+                                .cantidad {
+                                    font-size: 14px;
+                                    color: #666;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+}
+
+// -- MEDIA QUERIES --
+@include media-queries-header-footer();
+
+
+@media (max-width: 978px) {
+    #pagos{
+        width: 90vw;
+        margin-top: 7em;
+        
+        .contenedor-columnas {
+            grid-template-columns: 1fr;
+
+            .columna-derecha {
+                position: static;
+                margin-top: 30px;
+                
+            }
+        }
+
+        .proceso-pago {
+            .form-grid {
+                grid-template-columns: 1fr !important;
+                .form-group {
+                    &.full-width{
+                        width: 100% !important;
+                    }}
+            }
+        }
+
+        .payment-methods .method-selector {
+            flex-direction: column;
+        }
+    }
+}
+
+@media (max-width: 480px) {
+    #pagos{
+        h1 {
+            font-size: 24px;
+        }
+        .proceso-pago,
+        .resumen-pedido {
+            padding: 20px !important;
+        }
+
+        .form-grid {
+            gap: 10px !important;
+        }
+    }
+}
+
+

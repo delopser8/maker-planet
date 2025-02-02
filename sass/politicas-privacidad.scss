@@ -1,0 +1,87 @@
+@import "mixins.scss";
+
+// variables politicas
+    $color-principal: #262531;
+
+html{
+    scroll-behavior: smooth;
+}
+
+body{
+    @include reset-body();
+}
+
+/*-- HEADER --*/
+#header{
+    @include header-mix();
+}
+
+/*-- FUNCIONALIDADES NAV --*/
+@include nav-funct-mix();
+
+/*-- FOOTER --*/
+#footer{
+    @include footer-mix();
+}
+
+// --------------------------------
+/* estilos generales */
+main * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+  
+
+    #logo img{
+        margin-top: -20px;
+        width: 25%;
+        filter: invert(1);
+    }
+
+    
+    #politicas-title{
+        color: $color-principal;
+        font-size: 2em;
+        text-align: center;
+        margin-bottom: 4vh;
+    }
+  
+  #privacy {
+    max-width: 800px;
+    margin: 2em auto;
+    padding: 1em 5em;
+    background: #fdfdfd;
+    margin-top: 14vh;
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .privacy-section {
+    margin-bottom: 2em;
+  }
+  
+  .privacy-section h2 {
+    margin-bottom: 0.5em;
+    color: $color-principal;
+    border-bottom: 2px solid $color-principal;
+    display: inline-block;
+    padding-bottom: 0.2em;
+  }
+  
+  .privacy-section p,
+  .privacy-section ul {
+    margin-bottom: 1em;
+  }
+  
+  .privacy-section ul {
+    list-style-type: disc;
+    padding-left: 1.5em;
+  }
+  
+  .privacy-section li {
+    margin-bottom: 0.5em;
+  }
+  
+  
+// -- MEDIA QUERIES --
+@include media-queries-header-footer();

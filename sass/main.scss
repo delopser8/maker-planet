@@ -1,0 +1,629 @@
+@import "mixins.scss";
+
+/* variables */
+    $hero-text-size: 4vw; 
+    $hero-text-color: rgb(255, 255, 255);
+    $secondary-bgcolor: #e6e6e6;
+    $cards-bgcolor: #d8d8d8;
+
+body{
+    @include reset-body();
+}
+
+/*-- HEADER --*/
+#header{
+    @include header-mix();
+}
+
+/*-- FOOTER --*/
+#footer{
+   @include footer-mix();
+}
+
+
+/*-- FUNCIONALIDADES NAV --*/
+@include nav-funct-mix();
+
+/*-- HERO --*/
+#hero{
+    height: auto;
+    max-height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    background: linear-gradient(to right,
+    #3e2a1f,
+    #593a1e,
+    #24335c,
+    #33420c,
+    #593a1e,
+    #3e2a1f,
+    );
+    background-size: 400%;
+    animation: hero-new-bgcolor 70s linear infinite;
+
+    & .hero-fase{
+        height: 100vh;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+
+        & .hero-text{
+            font-size: $hero-text-size;
+            color: $hero-text-color;
+            margin: auto;
+
+            & .hero-text-change{
+                overflow: hidden;
+                height: 1.1em;
+
+                @for $i from 1 to 4 {
+                    & .txt-chng-#{$i} {
+                        @if $i == 1 {
+                            animation: hero-new-text 2s cubic-bezier(0.25, 0.8, 0.25, 1) 6s forwards,
+                            hero-new-text-reverse 2s cubic-bezier(0.25, 0.8, 0.25, 1) 48s forwards;
+                        }
+                        @if $i == 2 {
+                            animation: hero-new-text 2s cubic-bezier(0.25, 0.8, 0.25, 1) 12s forwards,
+                            hero-new-text-reverse 2s cubic-bezier(0.25, 0.8, 0.25, 1) 42s forwards;
+                        }
+                        @if $i == 3 {
+                            animation: hero-new-text 2s cubic-bezier(0.25, 0.8, 0.25, 1) 18s forwards,
+                            hero-new-text-reverse 2s cubic-bezier(0.25, 0.8, 0.25, 1) 36s forwards;
+                        }
+                        @if $i == 4 {
+                            animation: hero-new-text 2s cubic-bezier(0.25, 0.8, 0.25, 1) 24s forwards,
+                                        hero-new-text-reverse 2s cubic-bezier(0.25, 0.8, 0.25, 1) 30s forwards;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    & .hero-image{
+                        box-shadow: -5px 0 20px rgba(51, 51, 51, 0.507);
+
+                        overflow: hidden;
+                        max-height: 100vh;
+                        display: grid;
+                        justify-content: center;
+
+                        & video{
+                            width: auto;
+                            height: 100vh;
+                        }
+
+                        @for $i from 1 to 4 {
+                            & .video-change-#{$i} {
+                                @if $i == 1 {
+                                    animation: hero-new-video 2s cubic-bezier(0.25, 0.8, 0.25, 1) 6s forwards,
+                                                hero-new-video-reverse 2s cubic-bezier(0.25, 0.8, 0.25, 1) 48s forwards;
+                                }
+                                @if $i == 2 {
+                                    animation: hero-new-video 2s cubic-bezier(0.25, 0.8, 0.25, 1) 12s forwards,
+                                                hero-new-video-reverse 2s cubic-bezier(0.25, 0.8, 0.25, 1) 42s forwards;
+                                }
+                                @if $i == 3 {
+                                    animation: hero-new-video 2s cubic-bezier(0.25, 0.8, 0.25, 1) 18s forwards,
+                                                hero-new-video-reverse 2s cubic-bezier(0.25, 0.8, 0.25, 1) 36s forwards;
+                                }
+                                @if $i == 4 {
+                                    animation: hero-new-video 2s cubic-bezier(0.25, 0.8, 0.25, 1) 24s forwards,
+                                                hero-new-video-reverse 2s cubic-bezier(0.25, 0.8, 0.25, 1) 30s forwards;
+                                }
+                            }
+                        }
+
+                    }
+    }
+}
+
+
+/*-- FRASE EMPRESA --*/
+.texto-comun {
+    font-size: 1.2em;
+    font-weight: 100;
+    line-height: 1.8em;
+    letter-spacing: 0.05em;
+    text-align: justify;
+  }
+#frase-empresa{
+    height: 230vh;
+    width: 100%;
+    display: flex;
+    align-items: start;
+
+    & .frase-emp-txt{
+        position: sticky;
+        top: 35%;
+        margin: 10% 20%;
+        @extend .texto-comun;
+
+        & .txt-marca{
+            transition: all 0.5s;
+        }
+
+        & .txt-firma{
+            display: block;
+            text-align: right;
+            transition: all 0.5s;
+        }
+
+        & .txt-aparece{
+            animation: frase-txt-aparece linear both;
+            animation-timeline: scroll(root);
+            animation-range: 20% 32%;
+        }
+
+        & .txt-marca:hover, & .txt-firma:hover{
+            filter: drop-shadow(0px 5px 3px rgb(141, 141, 141));
+        }
+        & .txt-marca:not(:hover), & .txt-firma:not(:hover){
+            filter: drop-shadow(3px 0px 1px rgb(207, 207, 207));
+        }
+    }
+}
+
+
+/*-- MARCAS --*/
+#marcas{
+    // background-color: rgb(206, 206, 206);
+    background-color: $secondary-bgcolor;
+    
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: all 0.5s;
+
+    & .marcas-title{
+        font-size: 2.2em;
+        font-weight: 100;
+        margin-top: 4em;
+
+        text-transform: uppercase;
+        letter-spacing: 0.2em;color: #555;
+        background: linear-gradient(90deg, #7d6823, #a38721);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+
+        &::after{
+            content: "";
+            bottom: 0;
+            display: block;
+            width: 100%;
+            height: 0.05em;
+            background: linear-gradient(90deg, #7d6823, #caaa36);
+            margin-top: 0.1em;
+        }
+    }
+
+    & .marcas-cards{
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 5vw;
+        margin-top: 4em;
+
+        & .card{
+            background-color: rgb(207, 207, 207);
+            border: 1px solid rgb(114, 114, 114);
+            height: 50vh;
+            width: 15vw;
+            border-radius: 0.2em;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.5s;
+            filter: grayscale(0.3);
+            cursor: pointer;
+
+            & img{
+                width: 52%;
+            }
+            & img:where(:not(.prim-card img)) {
+                width: 72%;
+            }
+        }
+    }
+
+    // manejo :hover de las cards
+    &:has(.card:hover){
+        .card:hover{
+            scale: 1.1;
+            filter: grayscale(0);
+        }
+
+        .card:not(:hover){
+            filter: blur(1px) grayscale(0.3);
+            opacity: 0.6;
+            scale: 0.9;
+        }
+    }
+
+    &:has(.card:nth-child(1):hover){
+        background-color: #FFEE00;
+
+        .card:nth-child(1):hover{
+            background-color: #FFEE00;
+            border: 1px solid rgb(165, 165, 0);
+            box-shadow: 0 0 60px 5px rgb(255, 252, 216);
+        }
+    }
+    &:has(.card:nth-child(2):hover){
+        background-color: #a7dcff;
+
+        .card:nth-child(2):hover{
+            background-color: #a7dcff;
+            border: 1px solid #66889e;
+            box-shadow: 0 0 60px 5px #def2ff;
+        }
+    }
+    &:has(.card:nth-child(3):hover){
+        background-color: #c197f1;
+
+        .card:nth-child(3):hover{
+            background-color: #c197f1;
+            border: 1px solid #734d9e;
+            box-shadow: 0 0 60px 5px #f1d7ff;
+        }
+    }
+    &:has(.card:nth-child(4):hover){
+        background-color: rgb(59, 59, 59);
+
+        .card:nth-child(4):hover{
+            background-color: rgb(59, 59, 59);
+            border: 1px solid rgb(15, 15, 15);
+            box-shadow: 0 0 60px 5px rgb(82, 82, 82);
+        }
+    }
+}
+
+
+/*-- VENTAJAS DE COMPRAR AQUI --*/ 
+#ventajas{
+    $color-txt-ttl: #313437; //variable local
+    height: 105vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    overflow: hidden;
+
+    & .v-title{
+        font-size: 2.2em;
+        font-weight: bold;
+        margin-top: -0.5em;
+        margin-bottom: 3em;
+        color: $color-txt-ttl;
+        text-align: center;
+    }
+
+    & .v-cards{
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2.2em;
+
+        & .v-card{
+            height: 30vh;
+            width: 18vw;
+            padding: 1.6em;
+            font-size: 1.2em;
+            font-weight: bold;
+            text-align: center;
+            line-height: 1.5em;
+            color: $color-txt-ttl;
+            border-radius: 1.5em;
+            background-color: $cards-bgcolor;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap: 2vh;
+            transition: all 0.5s;
+
+            & img{
+                width: 25%;
+            }
+        }
+    }
+ 
+} 
+
+
+/*-- CARRUSEL TESTIMONIOS --*/
+#testimonios{
+    height: 600px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+    background-color: $secondary-bgcolor;
+
+    & .comillas-img{
+        width: 3.6em;
+        margin-top: 5em;
+    }
+
+    & .estrellas-img{
+        width: 35%;
+        margin-top: -18%;
+        margin-bottom: -5%;
+    }
+
+    & .testimonios-title{
+        margin-bottom: 3.2em;
+    }
+
+    & .testimonios-cards{
+        display: flex;
+        margin-left: 70em;
+        animation: scroll-t-cards 45s linear infinite;
+        color: darken($color: $txt-color, $amount: 10);
+
+        & .t-card{
+            width: 200px;
+            background-color: $cards-bgcolor;
+            box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            margin-right: 2em;
+            padding: 2em;
+            display: flex;
+            flex-direction: column;
+        }
+
+        & .t-firma{
+            margin-top: 1.5em;
+            display: block;
+            align-self: end;
+        }
+
+        &:hover{
+            animation-play-state: paused;
+            cursor: crosshair;
+        }
+    }
+}
+
+
+
+
+/*-- animaciones --*/
+@keyframes hero-new-video{
+    0%{
+        filter: brightness(0.9);
+    }
+    100%{
+        margin-top: -60%;
+        filter: brightness(0);
+    }
+}
+@keyframes hero-new-video-reverse{
+    0%{
+        filter: brightness(0.4);
+    }
+    100%{
+        margin-top: 0;
+        filter: brightness(1);
+    }
+}
+
+@keyframes hero-new-text {
+    0% { }
+    100% {
+        margin-top: -1.2em;
+    }
+}
+@keyframes hero-new-text-reverse {
+    0% { }
+    100% {
+        margin-top: 0em;
+    }
+}
+
+@keyframes hero-new-bgcolor {
+    0% {
+        background-position: 0%;
+      }
+      25% {
+        background-position: 100%;
+      }
+      50% {
+        background-position: 200%;
+      }
+      75% {
+        background-position: 300%;
+      }
+      100% {
+        background-position: 0%;
+      }
+}
+
+@keyframes frase-txt-aparece {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes scroll-t-cards {
+    0% {
+        transform: translateX(0);
+    }
+    50% {
+        transform: translateX(-58vw);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+
+
+// -- MEDIA QUERIES --
+@include media-queries-header-footer();
+
+@media (max-width: 1024px) {
+    //animaciones
+    #hero {
+        .hero-image {
+            grid-row: 1;
+            height: 60vh;
+        }
+    }
+    #testimonios .testimonios-cards {
+        animation-duration: 18s;
+    }
+
+    // HERO
+    #hero {
+      .hero-fase {
+        grid-template-columns: 1fr;
+        grid-template-rows:  35% 85%;
+        
+        .hero-text {
+          font-size: 7vw;
+          padding: 15% 10%;
+          text-align: center;
+        }
+        
+      }
+    }
+  
+    // FRASE EMPRESA
+    #frase-empresa {
+      
+      .frase-emp-txt {
+        width: 80%;
+        font-size: 1.1em;
+        top: 20%;
+      }
+    }
+    // MARCAS
+    #marcas {
+      height: auto;
+      padding: 15% 5%;
+      
+      .marcas-title {
+        font-size: 3.5vw;
+        margin-top: 15%;
+      }
+      
+      .marcas-cards {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 3em;
+        margin: 10% 0;
+        
+        .card {
+          width: 30vw;
+          height: 40vh;
+        }
+      }
+    }
+  }
+  
+  @media (max-width: 768px) {
+  
+    // VENTAJAS
+    #ventajas {
+      height: auto;
+      padding: 15% 0;
+      
+      .v-title {
+          font-size: 4vw;
+          margin-bottom: 8vh;
+        }
+        
+        .v-cards {
+            grid-template-columns: 1fr;
+            
+            .v-card {
+            height: auto;
+            margin-bottom: 5vh;
+            width: 60vw;
+        }
+      }
+    }
+
+    // TESTIMONIOS
+    #testimonios {
+      .testimonios-title{
+        font-size: 1.3em;
+      }
+    }
+  }
+  
+  @media (max-width: 480px) {
+    // HERO
+    #hero .hero-fase {
+      .hero-text {
+        font-size: 8vw;
+        padding: 25% 10%;
+      }
+      
+      .hero-image video {
+        height: 50vh;
+      }
+    }
+  
+    // MARCAS
+    #marcas {
+      .marcas-cards {
+        grid-template-columns: 1fr;
+        
+        .card {
+          width: 70vw;
+          height: 50vh;
+          margin: 0 auto;
+        }
+      }
+    }
+  
+    // TESTIMONIOS
+    #testimonios {
+      height: 70vh;
+
+      .testimonios-cards {
+        animation: none;
+        flex-direction: column;
+        margin-left: 0;
+        overflow-y: auto;
+        width: 90%;
+        
+        .t-card {
+          width: 100%;
+          margin: 2vh 0;
+          padding: 5%;
+        }
+      }
+      
+      .comillas-img {
+        width: 10%;
+      }
+      
+      .estrellas-img {
+        width: 50%;
+      }
+    }
+  
+    // VENTAJAS
+    #ventajas {
+      .v-title {
+        font-size: 6vw;
+      }
+      
+      .v-cards .v-card {
+        width: 80vw;
+        font-size: 1em;
+      }
+    }
+  
+    // FRASE EMPRESA
+    #frase-empresa .frase-emp-txt {
+      font-size: 0.9em;
+      line-height: 1.6em;
+    }
+
+  }
+  

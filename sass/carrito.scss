@@ -1,0 +1,218 @@
+@import "mixins.scss";
+
+$color-bordes: #0000001f;
+$bloque-fondo: none;
+
+
+html{
+    scroll-behavior: smooth;
+}
+
+body{
+    @include reset-body();
+}
+
+/*-- HEADER --*/
+#header{
+    @include header-mix();
+}
+
+/*-- FUNCIONALIDADES NAV --*/
+@include nav-funct-mix();
+
+/*-- FOOTER --*/
+#footer{
+    @include footer-mix();
+}
+ 
+
+// -------------------------------
+/*-- MAIN --*/
+#carrito {
+    width: 82vw ;
+    margin: 6em auto;
+    
+    h1 {
+      font-size: 24px;
+      padding-bottom: 15px;
+      margin-bottom: 30px;
+      border-bottom: 2px solid $color-bordes;
+    }
+  
+    .contenedor-columnas {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 2em;
+      
+      .columna-izquierda {
+        .productos {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          
+          .producto {
+            padding: 20px;
+            background: $bloque-fondo;
+            box-shadow: 1px 1px 8px 1px rgba(173, 173, 173, 0.651);
+            
+            &-contenido {
+              display: flex;
+              align-items: center;
+              gap: 20px;
+              
+              .producto-imagen {
+                width: 100px;
+                height: 100px;
+                object-fit: contain;
+              }
+              
+              .producto-detalles {
+                flex: 1;
+                
+                h2 { 
+                  font-size: 16px;
+                  margin: 0 0 10px 0;
+                }
+                
+                .producto-precio {
+                  font-size: 18px;
+                  font-weight: bold;
+                  color: #222;
+                }
+              }
+              
+              .producto-cantidad {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                
+                button {
+                  width: 30px;
+                  height: 30px;
+                  border-radius: 50%;
+                  border: 1px solid $color-bordes;
+                  background: none;
+                  cursor: pointer;
+                  
+                  &:hover {
+                    background: #f8f8f8;
+                  }
+                }
+              }
+              
+              .producto-eliminar img {
+                width: 24px;
+                opacity: 0.6;
+                transition: opacity 0.3s;
+                
+                &:hover {
+                  opacity: 1;
+                }
+              }
+            }
+          }
+        }
+      }
+  
+      .columna-derecha {
+        position: sticky;
+        top: 20px;
+        height: fit-content;
+        
+        .resumen {
+          padding: 25px;
+          background: $bloque-fondo;
+          box-shadow: 1px 1px 8px 1px rgba(173, 173, 173, 0.651);
+          
+          h2 {
+            font-size: 20px;
+            margin-bottom: 20px;
+          }
+          
+          .total p {
+            display: flex;
+            justify-content: space-between;
+            margin: 10px 0;
+
+            span[title^="t"]{
+              text-shadow: 0.5px 0.5px 0.5px #d0d0d0;
+            }
+
+            span[title="precio total"]{
+              text-shadow: 0.5px 0.5px 0.5px #d4d4d4;
+            }
+            
+            &.envio-gratis {
+              color: #008000;
+              background: #e8f5e9;
+              padding: 10px;
+              border-radius: 4px;
+              margin: 15px 0;
+            }
+            
+            &.importe-total {
+              font-size: 18px;
+              font-weight: bold;
+              border-top: 2px solid $color-bordes;
+              padding-top: 15px;
+            }
+          }
+          
+          .btn-pago {
+            width: 100%;
+            padding: 15px;
+            background: #000;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 20px 0;
+            transition: opacity 0.3s;
+            font-size: 1em;
+            
+            &:hover {
+              opacity: 0.9;
+            }
+          }
+          
+          .metodos-pago {
+            margin-top: 25px;
+            padding-top: 25px;
+            border-top: 1px solid $color-bordes;
+            
+            .tarjetas {
+              display: flex;
+              gap: 15px;
+              margin-top: 10px;
+              
+              span {
+                padding: 5px 10px;
+                border: 1px solid $color-bordes;
+                border-radius: 4px;
+                font-size: 14px;
+              }
+            }
+          }
+        }
+      }
+    }
+  
+  }
+
+  
+// -- MEDIA QUERIES --
+@include media-queries-header-footer();
+
+@media (max-width: 795px) {
+  #carrito{
+
+    .contenedor-columnas {
+      grid-template-columns: 1fr;
+      
+      .columna-derecha {
+        position: static;
+        margin-top: 30px;
+      }
+    }
+  }
+}
